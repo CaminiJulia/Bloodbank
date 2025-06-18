@@ -8,7 +8,7 @@
 <body class="bg-gray-100 text-gray-900">
 
     <header class="bg-red-600 text-white p-4 text-center">
-        <h1 class="text-2xl font-bold">Bloodbank - Dashboard</h1>
+        <h1 class="text-2xl font-bold">Bloodbank</h1>
     </header>
 
     <main class="p-6 max-w-7xl mx-auto">

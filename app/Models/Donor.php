@@ -8,8 +8,10 @@ use App\Models\User;
 class Donor extends Model
 {
     protected $fillable = [
-        'user_id', 'blood_type_id', 'birth_date', 'phone', 'address'
-    ];
+    'user_id', 'name', 'blood_type_id', 'birth_date', 'phone', 'address'
+];
+
+
 
     public function user()
     {

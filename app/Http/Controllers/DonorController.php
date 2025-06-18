@@ -25,24 +25,26 @@ class DonorController extends Controller
 
     // Armazena um novo doador
     public function store(Request $request)
-    {
-        $request->validate([
-            'blood_type_id' => 'required|exists:blood_types,id',
-            'birth_date' => 'required|date',
-            'phone' => 'required',
-            'address' => 'required',
-        ]);
+{
+    $request->validate([
+        'name' => 'required|string|max:255',
+        'blood_type_id' => 'required|exists:blood_types,id',
+        'birth_date' => 'required|date',
+        'phone' => 'required',
+        'address' => 'required',
+    ]);
 
-        Donor::create([
-            'user_id' => Auth::id(),
-            'blood_type_id' => $request->blood_type_id,
-            'birth_date' => $request->birth_date,
-            'phone' => $request->phone,
-            'address' => $request->address,
-        ]);
+    Donor::create([
+        'user_id' => Auth::id(),
+        'name' => $request->name,
+        'blood_type_id' => $request->blood_type_id,
+        'birth_date' => $request->birth_date,
+        'phone' => $request->phone,
+        'address' => $request->address,
+    ]);
 
-        return redirect()->route('donors.index')->with('success', 'Doador cadastrado!');
-    }
+    return redirect()->route('donors.index')->with('success', 'Doador cadastrado!');
+}
 
     // Mostra o formulário de edição
     public function edit(Donor $donor)
@@ -55,13 +57,15 @@ class DonorController extends Controller
     public function update(Request $request, Donor $donor)
     {
         $request->validate([
+            'name' => 'required|string|max:255',
             'blood_type_id' => 'required|exists:blood_types,id',
             'birth_date' => 'required|date',
-            'phone' => 'required',
-            'address' => 'required',
+            'phone' => 'required|string|max:20',
+            'address' => 'required|string|max:255',
         ]);
 
         $donor->update([
+            'name' => $request->name,
             'blood_type_id' => $request->blood_type_id,
             'birth_date' => $request->birth_date,
             'phone' => $request->phone,
